@@ -64,7 +64,7 @@ def update_list(request, pk):
                 lists.text = form.cleaned_data['text']
                 lists.email = form.cleaned_data['email']
                 lists.save()
-                return redirect('article', pk=lists.pk)
+                return redirect('index')
             else:
                 return render(request, 'edit.html', context={'form': form, 'lists': lists})
     except BookGuest.DoesNotExist:
