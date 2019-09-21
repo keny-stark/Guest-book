@@ -1,0 +1,80 @@
+[
+{
+  "model": "webapp.bookguest",
+  "pk": 1,
+  "fields": {
+    "name": "atay",
+    "text": "same text",
+    "email": "atay@pipi.kg",
+    "status": "blocked",
+    "created_at": "2019-09-21T06:19:50.037Z",
+    "updated_at": "2019-09-21T06:19:50.037Z"
+  }
+},
+{
+  "model": "webapp.bookguest",
+  "pk": 2,
+  "fields": {
+    "name": "osakar",
+    "text": "same text",
+    "email": "oskar@email.com",
+    "status": "active",
+    "created_at": "2019-09-21T06:20:29.264Z",
+    "updated_at": "2019-09-21T06:20:29.264Z"
+  }
+},
+{
+  "model": "webapp.bookguest",
+  "pk": 3,
+  "fields": {
+    "name": "Pasha",
+    "text": "same text",
+    "email": "pasha@att.kg",
+    "status": "active",
+    "created_at": "2019-09-21T06:20:53.487Z",
+    "updated_at": "2019-09-21T06:20:53.487Z"
+  }
+},
+{
+  "model": "webapp.bookguest",
+  "pk": 4,
+  "fields": {
+    "name": "Arman",
+    "text": "same text",
+    "email": "armani@att.kg",
+    "status": "active",
+    "created_at": "2019-09-21T06:21:16.512Z",
+    "updated_at": "2019-09-21T06:21:16.512Z"
+  }
+},
+{
+  "model": "webapp.bookguest",
+  "pk": 5,
+  "fields": {
+    "name": "keny",
+    "text": "bla bla bla",
+    "email": "abdurakhmanov_i@iuca.kg",
+    "status": "active",
+    "created_at": "2019-09-21T06:21:43.920Z",
+    "updated_at": "2019-09-21T06:21:43.920Z"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$sufKs0o0LN55$6z5yzk994jZ+cGoU8AfKM3fU5qtiwjg9n/Fv6hg7d50=",
+    "last_login": "2019-09-21T06:15:31.577Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2019-09-21T06:15:25.971Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
