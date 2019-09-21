@@ -1,16 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from webapp.models import BookGuest, status_choices
 from django.http import HttpResponseNotFound
-from django.db import models
 from webapp.forms import ListForm
-from django.contrib.postgres.search import *
 
 
 def index_views(request, *args, **kwargs):
     search = request.GET.get('search', '')
     if search:
         lists = BookGuest.objects.filter(name__icontains=search, status='active')
-        print(lists)
     else:
         lists = BookGuest.objects.order_by('-updated_at').filter(status='active')
     return render(request, 'index.html', context={
@@ -45,7 +42,6 @@ def delete_list(request, pk):
             'list': list})
     else:
         list = get_object_or_404(BookGuest, pk=pk)
-        print(list)
         list.delete()
         return redirect('index')
 
