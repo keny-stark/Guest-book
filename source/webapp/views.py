@@ -33,44 +33,41 @@ def add_list(request, *args, **kwargs):
         form = ListForm(data=request.POST)
         if form.is_valid():
             article = BookGuest.objects.create(
-            description=form.cleaned_data['description'],
-            status=form.cleaned_data['status'],
+            name=form.cleaned_data['name'],
             text=form.cleaned_data['text'],
-            created_at=form.cleaned_data['created_at']
+            email=form.cleaned_data['email']
             )
-            return redirect('article', pk=article.pk)
+            return redirect('list_view', pk=article.pk)
         else:
             return render(request, 'add_comit.html', context={'form': form})
 
 
 def delete_list(request, pk):
-    article = get_object_or_404(BookGuest, pk=pk)
-    article.delete()
+    list = get_object_or_404(BookGuest, pk=pk)
+    list.delete()
     return redirect('index')
 
 
 def update_list(request, pk):
     try:
-        articles = get_object_or_404(BookGuest, pk=pk)
+        lists = get_object_or_404(BookGuest, pk=pk)
         if request.method == 'GET':
             form = ListForm(data={
-                'description': articles.description,
-                'status': articles.status,
-                'text': articles.text,
-                'created_at': articles.created_at
+                'name': lists.name,
+                'text': lists.text,
+                'email': lists.email
             })
             return render(request, 'edit.html', context={
-                'articles': articles, 'form': form})
+                'lists': lists, 'form': form})
         elif request.method == "POST":
             form = ListForm(data=request.POST)
             if form.is_valid():
-                articles.description = form.cleaned_data['description']
-                articles.status = form.cleaned_data['status']
-                articles.text = form.cleaned_data['text']
-                articles.created_at = form.cleaned_data['created_at']
-                articles.save()
-                return redirect('article', pk=articles.pk)
+                lists.name = form.cleaned_data['name']
+                lists.text = form.cleaned_data['text']
+                lists.email = form.cleaned_data['email']
+                lists.save()
+                return redirect('article', pk=lists.pk)
             else:
-                return render(request, 'edit.html', context={'form': form, 'articles': articles})
+                return render(request, 'edit.html', context={'form': form, 'lists': lists})
     except BookGuest.DoesNotExist:
         return HttpResponseNotFound("<h2>Article not found</h2>")
