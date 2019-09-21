@@ -5,6 +5,7 @@
     </li>
     <li>
         <form action="{% url 'index' %}" class="form-inline my-2 my-lg-0">
+            {% csrf_token %}
             <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form></li>

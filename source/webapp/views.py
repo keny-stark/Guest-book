@@ -1,14 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from webapp.models import BookGuest, status_choices
 from django.http import HttpResponseNotFound
+from django.db import models
 from webapp.forms import ListForm
-from django.db.models import Q
+from django.contrib.postgres.search import *
 
 
 def index_views(request, *args, **kwargs):
     search = request.GET.get('search', '')
     if search:
-        lists = BookGuest.objects.filter(Q(name=search))
+        lists = BookGuest.objects.filter(name__icontains=search, status='active')
+        print(lists)
     else:
         lists = BookGuest.objects.order_by('-updated_at').filter(status='active')
     return render(request, 'index.html', context={
