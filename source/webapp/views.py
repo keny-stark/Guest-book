@@ -10,16 +10,10 @@ def index_views(request, *args, **kwargs):
     if search:
         lists = BookGuest.objects.filter(Q(name=search))
     else:
-        lists = BookGuest.objects.filter(status='active').order_by('-updated_at')
+        lists = BookGuest.objects.order_by('-updated_at').filter(status='active')
     return render(request, 'index.html', context={
         'lists': lists
     })
-
-
-def list_view(request, pk):
-    list = get_object_or_404(BookGuest, pk=pk)
-    return render(request, 'list.html', context={
-        'list': list})
 
 
 def add_list(request, *args, **kwargs):
@@ -32,20 +26,26 @@ def add_list(request, *args, **kwargs):
     elif request.method == 'POST':
         form = ListForm(data=request.POST)
         if form.is_valid():
-            article = BookGuest.objects.create(
+            BookGuest.objects.create(
             name=form.cleaned_data['name'],
             text=form.cleaned_data['text'],
             email=form.cleaned_data['email']
             )
-            return redirect('list_view', pk=article.pk)
+            return redirect('index')
         else:
             return render(request, 'add_comit.html', context={'form': form})
 
 
 def delete_list(request, pk):
-    list = get_object_or_404(BookGuest, pk=pk)
-    list.delete()
-    return redirect('index')
+    if request.method == 'GET':
+        list = get_object_or_404(BookGuest, pk=pk)
+        return render(request, 'list.html', context={
+            'list': list})
+    else:
+        list = get_object_or_404(BookGuest, pk=pk)
+        print(list)
+        list.delete()
+        return redirect('index')
 
 
 def update_list(request, pk):
