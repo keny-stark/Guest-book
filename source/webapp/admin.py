@@ -1,3 +1,9 @@
 from django.contrib import admin
+from webapp.models import BookGuest
 
-# Register your models here.
+
+class ListAdmin(admin.ModelAdmin):
+    list_display = ['name', 'status', 'updated_at', 'created_at']
+
+
+admin.site.register(BookGuest, ListAdmin)
